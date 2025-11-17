@@ -118,18 +118,18 @@ public class LaunchServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            List<Token> trendingTokens = tokenDAO.getAllTokens();
+            List<Token> newestTokens = tokenDAO.getAllTokens();
             
             // Set as request attribute
-            request.setAttribute("trendingTokens", trendingTokens);
+            request.setAttribute("newestTokens", newestTokens);
             
-            System.out.println("Loaded " + (trendingTokens != null ? trendingTokens.size() : 0) + " trending tokens");
+            System.out.println("Loaded " + (newestTokens != null ? newestTokens.size() : 0) + " newest tokens");
 
             request.getRequestDispatcher("/launch.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Failed to load tokens: " + e.getMessage());
-            request.getRequestDispatcher("/WEB-INF/jsp/launch.jsp").forward(request, response);
+            request.getRequestDispatcher("/launch.jsp").forward(request, response);
         }
     }
 }

@@ -26,30 +26,39 @@
                             <span class="text-lg font-medium text-black">Welcome newcomer!</span>
                             <p class="text-sm text-gray-500 font-medium">You are early! Make your project bigger with Us now!</p>
                         </div>
-                        <form action="register" method="POST">
+                        
+                        <% if (request.getAttribute("error") != null) { %>
+                            <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                                <p class="text-sm text-red-600"><%= request.getAttribute("error") %></p>
+                            </div>
+                        <% } %>
+                        
+                        <form action="register" method="POST" onsubmit="return validateForm()">
                             <div class="mb-6">
                                 <label class="block mb-2 text-gray-800 font-medium" for="name">Full Name</label>
-                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="text" name="name" placeholder="John Doe" required=""/>
+                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="text" name="name" id="name" placeholder="John Doe" required/>
                             </div>
                             <div class="mb-6">
                                 <label class="block mb-2 text-gray-800 font-medium" for="dob">Date of Birth</label>
-                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="date" name="dob" required=""/>
+                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="date" name="dob" id="dob" required/>
                             </div>
                             <div class="mb-6">
                                 <label class="block mb-2 text-gray-800 font-medium" for="email">Email Address</label>
-                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="email" name="email" placeholder="you@example.com" required=""/>
+                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="email" name="email" id="email" placeholder="you@example.com" required/>
                             </div>
                             <div class="mb-6">
                                 <label class="block mb-2 text-gray-800 font-medium" for="password">Password</label>
-                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="password" name="password" placeholder="Enter your password" required=""/>
+                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="password" name="password" id="password" placeholder="Enter your password" minlength="8" required/>
+                                <p class="mt-1 text-xs text-gray-500">Password must be at least 8 characters long</p>
                             </div>
                             <div class="mb-6">
                                 <label class="block mb-2 text-gray-800 font-medium" for="confirm-password">Confirm Password</label>
-                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="password" name="confirm-password" placeholder="Enter your password again" required=""/>
+                                <input class="w-full py-3 px-4 text-gray-500 leading-tight placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 border border-gray-200 rounded-lg shadow-xs" type="password" name="confirm-password" id="confirm-password" placeholder="Enter your password again" minlength="8" required/>
+                                <p id="password-match-error" class="mt-1 text-xs text-red-600 hidden">Passwords do not match</p>
                             </div>
                             <div class="mb-6 flex items-center">
                                 <label>
-                                    <input type="checkbox" name="tnc" value="1" required=""/>
+                                    <input type="checkbox" name="tnc" value="1" required/>
                                     <span class="ml-1 text-gray-800 text-sm">I agree to the <a class="text-black hover:text-gray-800 font-medium" href="#">Terms and Conditions</a></span>
                                 </label>
                             </div>
@@ -63,5 +72,38 @@
             </div>
         </div>
     </section>
+    
+    <script>
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorElement = document.getElementById('password-match-error');
+            
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long');
+                return false;
+            }
+            
+            if (password !== confirmPassword) {
+                errorElement.classList.remove('hidden');
+                return false;
+            }
+            
+            errorElement.classList.add('hidden');
+            return true;
+        }
+        
+        document.getElementById('confirm-password').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            const errorElement = document.getElementById('password-match-error');
+            
+            if (confirmPassword.length > 0 && password !== confirmPassword) {
+                errorElement.classList.remove('hidden');
+            } else {
+                errorElement.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>

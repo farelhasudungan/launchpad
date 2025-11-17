@@ -9,6 +9,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
+    public boolean isEmailExists(String email) {
+        String query = "SELECT COUNT(*) FROM users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+            return false;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     public boolean registerUser(User user) {
         String query = "INSERT INTO users (email, password, name) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();

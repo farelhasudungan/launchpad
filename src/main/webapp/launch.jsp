@@ -12,6 +12,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-white text-black font-[Poppins] overflow-x-hidden">
+    <%
+        Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
+        String userEmail = (String) session.getAttribute("userEmail");
+        boolean isLoggedIn = (loggedIn != null && loggedIn);
+    %>
     <header class="bg-white inset-x-0 top-0 z-50">
         <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
         <div class="flex lg:flex-1">
@@ -35,7 +40,12 @@
             <a href="./about-us" class="text-sm/6 font-semibold text-gray-900">About Us</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="./login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            <% if (isLoggedIn) { %>
+                <span class="text-sm/6 font-semibold text-gray-900 mr-4">Welcome, <%= userEmail %></span>
+                <a href="./logout" class="text-sm/6 font-semibold text-gray-900">Log out</a>
+            <% } else { %>
+                <a href="./login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            <% } %>
         </div>
         </nav>
         <el-dialog>
@@ -63,7 +73,12 @@
                     <a href="./about-us" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">About Us</a>
                     </div>
                     <div class="py-6">
-                    <a href="./login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
+                        <% if (isLoggedIn) { %>
+                            <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900"><%= userEmail %></span>
+                            <a href="./logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log out</a>
+                        <% } else { %>
+                            <a href="./login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
+                        <% } %>
                     </div>
                 </div>
                 </div>
@@ -96,16 +111,16 @@
     <% } %>
 
     <%
-        List<Token> trendingTokens = (List<Token>) request.getAttribute("trendingTokens");
+        List<Token> newestTokens = (List<Token>) request.getAttribute("newestTokens");
     %>
     
     <div class="px-4 md:px-10 lg:px-80 py-8 md:py-16 bg-gray-50 border-b border-gray-100">
         <div class="w-full max-w-7xl mx-auto flex flex-col gap-6 md:gap-8">
-            <h2 class="text-xl md:text-2xl font-normal leading-9">Trending Tokens</h2>
+            <h2 class="text-xl md:text-2xl font-normal leading-9">Newest Tokens</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <% 
-                if (trendingTokens != null && !trendingTokens.isEmpty()) {
-                    for (Token token : trendingTokens) { 
+                if (newestTokens != null && !newestTokens.isEmpty()) {
+                    for (Token token : newestTokens) { 
                 %>
                     <div class="p-5 bg-white border border-gray-200 hover:border-black transition-all flex flex-col gap-3 cursor-pointer">
                         <div class="flex items-center gap-3">
@@ -127,7 +142,7 @@
                 } else { 
                 %>
                     <div class="col-span-full text-center py-8 text-gray-500">
-                        No trending tokens available yet.
+                        No token available yet.
                     </div>
                 <% } %>
             </div>

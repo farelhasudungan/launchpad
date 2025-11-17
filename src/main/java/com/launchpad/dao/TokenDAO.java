@@ -43,7 +43,7 @@ public class TokenDAO {
         }
     }
 
-    // Get all tokens (for trending section)
+    // Get all tokens
     public List<Token> getAllTokens() {
     List<Token> tokens = new ArrayList<>();
     String query = "SELECT id, name, symbol, network, image_data, image_type, " +

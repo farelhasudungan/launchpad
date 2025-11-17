@@ -1,4 +1,4 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +9,11 @@
     <link href="css/output.css" rel="stylesheet">
 </head>
 <body class="bg-white text-black overflow-x-hidden font-[Poppins]">
+    <%
+        Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
+        String userEmail = (String) session.getAttribute("userEmail");
+        boolean isLoggedIn = (loggedIn != null && loggedIn);
+    %>
     <header class="inset-x-0 top-0 z-50 bg-white/30 backdrop-blur-md">
         <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
         <div class="flex lg:flex-1">
@@ -32,7 +37,12 @@
             <a href="./about-us" class="text-sm/6 font-semibold text-gray-900">About Us</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="./login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            <% if (isLoggedIn) { %>
+                <span class="text-sm/6 font-semibold text-gray-900 mr-4">Welcome, <%= userEmail %></span>
+                <a href="./logout" class="text-sm/6 font-semibold text-gray-900">Log out</a>
+            <% } else { %>
+                <a href="./login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            <% } %>
         </div>
         </nav>
         <el-dialog>
@@ -60,7 +70,12 @@
                     <a href="./about-us" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">About Us</a>
                     </div>
                     <div class="py-6">
-                    <a href="./login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
+                        <% if (isLoggedIn) { %>
+                            <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900"><%= userEmail %></span>
+                            <a href="./logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log out</a>
+                        <% } else { %>
+                            <a href="./login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
+                        <% } %>
                     </div>
                 </div>
                 </div>

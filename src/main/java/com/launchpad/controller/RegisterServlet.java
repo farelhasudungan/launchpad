@@ -24,7 +24,24 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirm-password");
         String name = request.getParameter("name");
+
+        if (password.length() < 8){
+            request.setAttribute("error", "Password must be at least 8 characters long");
+            request.getRequestDispatcher("./register").forward(request, response);
+            return;
+        }
+        if (!password.equals(confirmPassword)) {
+            request.setAttribute("error", "Passwords do not match");
+            request.getRequestDispatcher("./register").forward(request, response);
+            return;
+        }
+        if (userDAO.isEmailExists(email)) {
+            request.setAttribute("error", "Email already registered");
+            request.getRequestDispatcher("./register").forward(request, response);
+            return;
+        }
 
         User newUser = new User();
         newUser.setEmail(email);
@@ -32,10 +49,10 @@ public class RegisterServlet extends HttpServlet {
         newUser.setName(name);
 
         if (userDAO.registerUser(newUser)) {
-            response.sendRedirect("login.jsp?registered=success");
+            response.sendRedirect("./login?registered=success");
         } else {
             request.setAttribute("error", "Registration failed");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("./register").forward(request, response);
         }
     }
 }
