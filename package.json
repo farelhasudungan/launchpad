@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/main/webapp/css/input.css -o ./src/main/webapp/css/output.css --minify",
+    "watch:css": "tailwindcss -i ./src/main/webapp/css/input.css -o ./src/main/webapp/css/output.css --watch"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "@tailwindcss/cli": "^4.1.17"
+  }
+}
