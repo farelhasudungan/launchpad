@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TokenDAO {
-    
-    // Save new token
     public boolean saveToken(Token token) {
         String query = "INSERT INTO tokens (name, symbol, network, image_data, image_type, " +
                     "contract_address, transaction_hash, deployer_address) " +
@@ -43,7 +41,6 @@ public class TokenDAO {
         }
     }
 
-    // Get all tokens
     public List<Token> getAllTokens() {
     List<Token> tokens = new ArrayList<>();
     String query = "SELECT id, name, symbol, network, image_data, image_type, " +
@@ -79,8 +76,6 @@ public class TokenDAO {
     return tokens;
 }
 
-    
-    // Get token by ID
     public Token getTokenById(int id) {
         String query = "SELECT * FROM tokens WHERE id = ?";
         

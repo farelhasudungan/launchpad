@@ -30,11 +30,9 @@ public class TokenImageServlet extends HttpServlet {
             Token token = tokenDAO.getTokenById(tokenId);
             
             if (token != null && token.getImageData() != null) {
-                // Set content type
                 response.setContentType(token.getImageType());
                 response.setContentLength(token.getImageData().length);
                 
-                // Write image data to response
                 try (OutputStream out = response.getOutputStream()) {
                     out.write(token.getImageData());
                     out.flush();
