@@ -4,25 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launchpad</title>
+    <title>DEX - Launchpad</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="css/output.css" rel="stylesheet">
 </head>
-<body class="bg-white min-h-screen flex items-center justify-center p-4 relative overflow-x-hidden overflow-y-auto font-[Poppins]">
-    <div aria-hidden="true" class="fixed inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" 
-             class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#60a5fa] to-[#3b82f6] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"></div>
-    </div>
-    <div aria-hidden="true" class="fixed inset-x-0 bottom-0 -z-10 transform-gpu overflow-hidden blur-3xl">
-        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" 
-             class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#06b6d4] to-[#0ea5e9] opacity-25 sm:left-[calc(50%+36rem)] sm:w-288.75"></div>
-    </div>
+<body class="bg-white min-h-screen font-[Poppins]">
     <%
         Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
         String userEmail = (String) session.getAttribute("userEmail");
         boolean isLoggedIn = (loggedIn != null && loggedIn);
     %>
-    <header class="absolute inset-x-0 top-0 z-50">
+    <header class="inset-x-0 top-0 z-50 bg-white/30 backdrop-blur-md">
         <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
         <div class="flex lg:flex-1">
             <a href="#" class="-m-1.5 p-1.5">
@@ -84,14 +76,14 @@
                     <a href="./dex" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Sell</a>
                     <a href="./about-us" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">About Us</a>
                     </div>
-                    <div class="py-6" >
+                    <div class="py-6">
                         <button id="connect-wallet-btn" onclick="WalletConnect.openConnectModal()" class="rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-xs hover:bg-blue-500">
                             Connect Wallet
                         </button>
                         <span id="wallet-address" class="text-sm font-semibold text-gray-900" style="display: none;"></span>
                         <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
                             Disconnect
-                        </button>   
+                        </button>
                         <% if (isLoggedIn) { %>
                             <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900"><%= userEmail %></span>
                             <a href="./logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log out</a>
@@ -107,29 +99,97 @@
         </el-dialog>
     </header>
 
-    <div class="relative isolate px-6 pt-14 lg:px-8">
-        <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+    <main class="container mx-auto px-4 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Decentralized Exchange</h1>
+            <p class="text-gray-600">Trade tokens directly on-chain with real-time market data</p>
         </div>
-        <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-            Learn about this project. <a href="./about-us" class="font-semibold text-blue-600"><span aria-hidden="true" class="absolute inset-0"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+
+        <div class="mb-6">
+            <div class="flex gap-4">
+                <div class="flex-1">
+                    <input type="text" id="search-token" placeholder="Search token by name or address..." 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+                <select id="network-select" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="base">Base</option>
+                    <option value="eth">Ethereum</option>
+                    <option value="arbitrum">Arbitrum</option>
+                </select>
+                <button onclick="searchToken()" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500">
+                    Search
+                </button>
             </div>
         </div>
-        <div class="text-center">
-            <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">Launch, grow, and scale your blockchain project</h1>
-            <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">The trusted launchpad helping blockchain projects raise capital and build communities from day one.</p>
-            <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a href="./login" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Get started</a>
-            <a href="./about-us" class="text-sm/6 font-semibold text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+
+        <!-- Main Trading Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h2 class="text-xl font-bold text-gray-900" id="token-name">Select a token to view chart</h2>
+                                <p class="text-sm text-gray-600" id="token-price">-</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Embedded Chart Container -->
+                    <div id="chart-container" class="relative" style="height: 600px;">
+                        <div class="flex items-center justify-center h-full text-gray-500">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                                <p class="mt-4 text-sm">Search for a token to display trading chart</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pool Information -->
+                <div class="mt-6 bg-white rounded-lg shadow-lg p-6" id="pool-info" style="display: none;">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Pool Information</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-600">24h Volume</p>
+                            <p class="text-lg font-semibold text-gray-900" id="pool-volume">-</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Liquidity</p>
+                            <p class="text-lg font-semibold text-gray-900" id="pool-liquidity">-</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">24h Txns</p>
+                            <p class="text-lg font-semibold text-gray-900" id="pool-txns">-</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Price Change</p>
+                            <p class="text-lg font-semibold" id="pool-change">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Panel (1/3 width) -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
+                    <h3 class="text-lg font-bold mb-4">Buy with Any Token</h3>
+                    <p class="text-sm text-gray-600 mb-6">
+                        Use B3 AnySpend to buy with any token on any chain - automatically routed and swapped
+                    </p>
+                    
+                    <!-- B3 AnySpend Button Container -->
+                    <div id="b3-buy-container" class="mb-6">
+                        <p class="text-center text-gray-500">Select a token to trade</p>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-        <div aria-hidden="true" class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-        </div>
-    </div>
-    </div>
+    </main>
 
     <script type="module" src="js/wallet.bundle.js"></script>
+    <script type="module" src="js/dex.bundle.js"></script>
+    <script src="js/dex.js"></script>
 </body>
 </html>
