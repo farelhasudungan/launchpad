@@ -14,7 +14,7 @@
         String userEmail = (String) session.getAttribute("userEmail");
         boolean isLoggedIn = (loggedIn != null && loggedIn);
     %>
-    <header class="inset-x-0 top-0 z-50 bg-white/30 backdrop-blur-md">
+    <header class="bg-white inset-x-0 top-0 z-50">
         <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
         <div class="flex lg:flex-1">
             <a href="#" class="-m-1.5 p-1.5">
@@ -44,11 +44,20 @@
             <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
                 Disconnect
             </button>
-            <% if (isLoggedIn) { %>
-                <span class="text-sm/6 font-semibold text-gray-900 mr-4">Welcome, <%= userEmail %></span>
-                <a href="./logout" class="text-sm/6 font-semibold text-gray-900">Log out</a>
+            <% if (isLoggedIn) { 
+                String displayName = (userEmail != null) ? userEmail : "User";
+            %>
+                <a href="./logout" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-600 transition-colors">Log out</a>
+                <a href="./profile" class="group relative block" title="Manage Profile">
+                    <img 
+                        src="https://ui-avatars.com/api/?name=<%= displayName %>&background=000&color=fff&rounded=true&size=40" 
+                        alt="Profile" 
+                        class="h-10 w-10 rounded-full border-2 border-transparent group-hover:border-gray-300 transition-all object-cover" 
+                    />
+                    <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white"></span>
+                </a>
             <% } else { %>
-                <a href="./login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+                <a href="./login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
             <% } %>
         </div>
         </nav>
@@ -84,11 +93,36 @@
                         <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
                             Disconnect
                         </button>
-                        <% if (isLoggedIn) { %>
-                            <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900"><%= userEmail %></span>
-                            <a href="./logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log out</a>
+                        <% if (isLoggedIn) {
+                            String displayName = (userEmail != null) ? userEmail : "User";
+                        %>
+                            <div class="relative -mx-3 mb-2 pt-4">
+                                <a href="./profile" class="flex items-center gap-3 rounded-lg px-3 py-3 hover:bg-gray-50 transition-all group">
+                                    <img 
+                                        src="https://ui-avatars.com/api/?name=<%= displayName %>&background=000&color=fff&rounded=true&size=40" 
+                                        alt="Profile" 
+                                        class="h-10 w-10 rounded-full object-cover border border-gray-200 group-hover:border-black transition-colors" 
+                                    />
+                                    
+                                    <div class="flex flex-col">
+                                        <span class="text-base font-semibold text-gray-900 leading-5">
+                                            <%= displayName %>
+                                        </span>
+                                        <span class="text-xs font-medium text-gray-600 mt-0.5">
+                                            Manage Profile &rarr;
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <a href="./logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors">
+                                Log out
+                            </a>
+
                         <% } else { %>
-                            <a href="./login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
+                            <a href="./login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50">
+                                Log in
+                            </a>
                         <% } %>
                     </div>
                 </div>

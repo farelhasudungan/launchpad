@@ -101,7 +101,7 @@
                         <% if (isLoggedIn) { 
                             String displayName = (userEmail != null) ? userEmail : "User";
                         %>
-                            <div class="relative -mx-3 mb-2 border-t border-gray-100 pt-4">
+                            <div class="relative -mx-3 mb-2 pt-4">
                                 <a href="./profile" class="flex items-center gap-3 rounded-lg px-3 py-3 hover:bg-gray-50 transition-all group">
                                     <img 
                                         src="https://ui-avatars.com/api/?name=<%= displayName %>&background=000&color=fff&rounded=true&size=40" 
