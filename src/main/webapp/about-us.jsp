@@ -93,11 +93,7 @@
                         <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
                             Disconnect
                         </button>
-                        <% if (isLoggedIn) { %>
-                            <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900"><%= userEmail %></span>
-                            <a href="./logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log out</a>
                         <% if (isLoggedIn) { 
-                            // Logic nama untuk avatar (sama seperti desktop)
                             String displayName = (userEmail != null) ? userEmail : "User";
                         %>
                             <div class="relative -mx-3 mb-2 border-t border-gray-100 pt-4">

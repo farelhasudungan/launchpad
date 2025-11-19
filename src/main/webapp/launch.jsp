@@ -95,10 +95,7 @@
                         <span id="wallet-address" class="text-sm font-semibold text-gray-900" style="display: none;"></span>
                         <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
                             Disconnect
-                        </button>   
-                        <% if (isLoggedIn) { %>
-                            <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900"><%= userEmail %></span>
-                            <a href="./logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log out</a>
+                        </button>
                         <% if (isLoggedIn) {
                             String displayName = (userEmail != null) ? userEmail : "User";
                         %>
