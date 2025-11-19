@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Date;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -26,6 +27,7 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm-password");
         String name = request.getParameter("name");
+        Date dob = Date.valueOf(request.getParameter("dob"));
 
         if (password.length() < 8){
             request.setAttribute("error", "Password must be at least 8 characters long");
@@ -45,14 +47,15 @@ public class RegisterServlet extends HttpServlet {
 
         User newUser = new User();
         newUser.setEmail(email);
-        newUser.setPassword(password); // Hash in production
+        newUser.setPassword(password);
         newUser.setName(name);
+        newUser.setDob(dob);
 
         if (userDAO.registerUser(newUser)) {
             response.sendRedirect("./login?registered=success");
         } else {
             request.setAttribute("error", "Registration failed");
-            request.getRequestDispatcher("./register").forward(request, response);
+            doGet(request, response);
         }
     }
 }
