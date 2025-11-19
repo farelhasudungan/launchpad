@@ -1,10 +1,19 @@
 {
   "scripts": {
     "build:css": "tailwindcss -i ./src/main/webapp/css/input.css -o ./src/main/webapp/css/output.css --minify",
-    "watch:css": "tailwindcss -i ./src/main/webapp/css/input.css -o ./src/main/webapp/css/output.css --watch"
+    "watch:css": "tailwindcss -i ./src/main/webapp/css/input.css -o ./src/main/webapp/css/output.css --watch",
+    "build:js": "vite build",
+    "dev": "vite"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.4.0",
-    "@tailwindcss/cli": "^4.1.17"
+    "@tailwindcss/cli": "^4.1.17",
+    "@reown/appkit": "^1.8.14",
+    "@reown/appkit-adapter-wagmi": "^1.8.14",
+    "viem": "^2.21.0",
+    "wagmi": "^2.19.4"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
   }
 }

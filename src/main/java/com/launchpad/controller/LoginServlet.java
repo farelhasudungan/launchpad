@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("./launch");
         } else {
             request.setAttribute("error", "Invalid email or password");
-            request.getRequestDispatcher("./login").forward(request, response);
+            doGet(request, response);
         }
     }
 }
