@@ -265,64 +265,38 @@
                 Meet The<br/>Amazing Team
             </div>
             <div class="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                <div class="relative overflow-hidden aspect-3/4 group">
-                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" 
-                        src="#" 
-                        alt="Farrel Hasudungan I. L." />
-                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-linear-to-t from-black/80 to-transparent">
+                
+                <div class="relative overflow-hidden aspect-3/4 group rounded-2xl shadow-lg">
+                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out transform group-hover:scale-105" 
+                         src="images/team/farrel.jpg" 
+                         alt="Farrel Hasudungan I. L." />
+                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
                         <div class="text-white text-xl md:text-2xl font-normal leading-8 mb-1">Farrel Hasudungan I. L.</div>
-                        <div class="text-white text-xs opacity-80 leading-5">Chief Executive Officer</div>
+                        <div class="text-white text-xs opacity-80 leading-5 font-light tracking-wide">CHIEF EXECUTIVE OFFICER</div>
                     </div>
                 </div>
                 
-                <div class="relative overflow-hidden aspect-3/4 group">
-                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" 
-                        src="#" 
-                        alt="M. Nabil Fauzan" />
-                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-linear-to-t from-black/80 to-transparent">
+                <div class="relative overflow-hidden aspect-3/4 group rounded-2xl shadow-lg">
+                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out transform group-hover:scale-105" 
+                         src="images/team/nabil.jpg" 
+                         alt="M. Nabil Fauzan" />
+                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
                         <div class="text-white text-xl md:text-2xl font-normal leading-8 mb-1">M. Nabil Fauzan</div>
-                        <div class="text-white text-xs opacity-80 leading-5">Chief Technology Officer</div>
+                        <div class="text-white text-xs opacity-80 leading-5 font-light tracking-wide">CHIEF TECHNOLOGY OFFICER</div>
                     </div>
                 </div>
                 
-                <div class="relative overflow-hidden aspect-3/4 group">
-                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" 
-                        src="#" 
-                        alt="Acquirell Kriswanto" />
-                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-linear-to-t from-black/80 to-transparent">
+                <div class="relative overflow-hidden aspect-3/4 group rounded-2xl shadow-lg">
+                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out transform group-hover:scale-105" 
+                         src="images/team/acquirell.jpg" 
+                         alt="Acquirell Kriswanto" />
+                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
                         <div class="text-white text-xl md:text-2xl font-normal leading-8 mb-1">Acquirell Kriswanto</div>
-                        <div class="text-white text-xs opacity-80 leading-5">Head of Marketing</div>
+                        <div class="text-white text-xs opacity-80 leading-5 font-light tracking-wide">HEAD OF MARKETING</div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="self-stretch h-[840px] bg-black/50 inline-flex justify-center items-center">
-            <div class="px-5 inline-flex flex-col justify-start items-center">
-                <div class="text-center justify-center text-white text-8xl font-normal leading-[120px]">Find your</div>
-                <div class="text-center justify-center text-white text-8xl font-bold leading-[120px]">Dream Project</div>
-                <div class="text-center justify-center text-white text-8xl font-normal leading-[120px]">Faster</div>
             </div>
-        </div>
-
-        <div class="w-full px-4 md:px-8 py-8 md:py-12 bg-white border-t border-gray-200">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">  
-                <div class="flex flex-col gap-3">
-                    <div class="text-black text-base font-semibold leading-6 pb-2">Explore</div>
-                    <a href="#" class="text-black text-sm md:text-base font-normal leading-6 hover:opacity-60">Launch</a>
-                    <a href="#" class="text-black text-sm md:text-base font-normal leading-6 hover:opacity-60">Buy</a>
-                    <a href="#" class="text-black text-sm md:text-base font-normal leading-6 hover:opacity-60">Sell</a>
-                </div>
-                
-                <div class="flex flex-col gap-3">
-                    <div class="text-black text-base font-semibold leading-6 pb-2">Resources</div>
-                    <a href="./about-us" class="text-black text-sm md:text-base font-normal leading-6 hover:opacity-60">About Us</a>
-                    <a href="#" class="text-black text-sm md:text-base font-normal leading-6 hover:opacity-60">Terms and Conditions</a>
-                    <a href="#" class="text-black text-sm md:text-base font-normal leading-6 hover:opacity-60">Support</a>
-                    <a href="#" class="text-black text-sm md:text-base font-normal leading-6 hover:opacity-60">Developers</a>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script type="module" src="js/wallet.bundle.js"></script>
