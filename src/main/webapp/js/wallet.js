@@ -19,7 +19,7 @@ const wagmiAdapter = new WagmiAdapter({
 const metadata = {
   name: 'Launchpad',
   description: 'Crypto Token Launchpad Platform',
-  url: window.location.origin, // Ganti dengan domain kamu
+  url: 'https://' + window.location.host, // Ganti dengan domain kamu
   icons: ['https://avatars.githubusercontent.com/u/179229932']
 };
 

@@ -10,7 +10,6 @@ export default defineConfig({
         wallet: resolve(__dirname, 'src/main/webapp/js/wallet.js')
       },
       output: {
-        publicPath: '/js/',
         entryFileNames: '[name].bundle.js',
         chunkFileNames: '[name].chunk.js',
         assetFileNames: '[name].[ext]'
