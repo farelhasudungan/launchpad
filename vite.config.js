@@ -4,6 +4,7 @@ import { resolve } from 'path';
 export default defineConfig({
   build: {
     outDir: 'src/main/webapp/js',
+    emptyOutDir: false,
     rollupOptions: {
       input: {
         wallet: resolve(__dirname, 'src/main/webapp/js/wallet.js')
@@ -15,6 +16,7 @@ export default defineConfig({
       }
     }
   },
+  base: '/js/',
   resolve: {
     alias: {
       process: "process/browser",
