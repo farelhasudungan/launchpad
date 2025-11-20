@@ -27,7 +27,9 @@ public class LoginServlet extends HttpServlet {
         
         if (userDAO.validateUser(email, password)) {
             HttpSession session = request.getSession();
+            session.setAttribute("userId", userDAO.getUserByEmail(email).getId());
             session.setAttribute("userEmail", email);
+            session.setAttribute("userName", userDAO.getUserByEmail(email).getName());
             session.setAttribute("loggedIn", true);
             
             response.sendRedirect("./launch");

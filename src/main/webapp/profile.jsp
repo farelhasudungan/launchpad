@@ -42,6 +42,13 @@
             <a href="./about-us" class="text-sm/6 font-semibold text-gray-900">About Us</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
+            <button id="connect-wallet-btn" onclick="WalletConnect.openConnectModal()" class="rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-xs hover:bg-blue-500">
+                Connect Wallet
+            </button>
+            <span id="wallet-address" class="text-sm font-semibold text-gray-900" style="display: none;"></span>
+            <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
+                Disconnect
+            </button>
             <% if (isLoggedIn) { 
                 String displayName = (userEmail != null) ? userEmail : "User";
             %>
@@ -84,11 +91,17 @@
                     <a href="./about-us" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">About Us</a>
                     </div>
                     <div class="py-6">
+                        <button id="connect-wallet-btn" onclick="WalletConnect.openConnectModal()" class="rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-xs hover:bg-blue-500">
+                            Connect Wallet
+                        </button>
+                        <span id="wallet-address" class="text-sm font-semibold text-gray-900" style="display: none;"></span>
+                        <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
+                            Disconnect
+                        </button>
                         <% if (isLoggedIn) { 
-                            // Logic nama untuk avatar (sama seperti desktop)
                             String displayName = (userEmail != null) ? userEmail : "User";
                         %>
-                            <div class="relative -mx-3 mb-2 border-t border-gray-100 pt-4">
+                            <div class="relative -mx-3 mb-2 pt-4">
                                 <a href="./profile" class="flex items-center gap-3 rounded-lg px-3 py-3 hover:bg-gray-50 transition-all group">
                                     <img 
                                         src="https://ui-avatars.com/api/?name=<%= displayName %>&background=000&color=fff&rounded=true&size=40" 

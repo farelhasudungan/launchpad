@@ -44,7 +44,14 @@
             <a href="./dex" class="text-sm/6 font-semibold text-gray-900">Sell</a>
             <a href="./about-us" class="text-sm/6 font-semibold text-gray-900">About Us</a>
         </div>
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
+            <button id="connect-wallet-btn" onclick="WalletConnect.openConnectModal()" class="rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-xs hover:bg-blue-500">
+                Connect Wallet
+            </button>
+            <span id="wallet-address" class="text-sm font-semibold text-gray-900" style="display: none;"></span>
+            <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
+                Disconnect
+            </button>
             <% if (isLoggedIn) { %>
                 <span class="text-sm/6 font-semibold text-gray-900 mr-4">Welcome, <%= userEmail %></span>
                 <a href="./logout" class="text-sm/6 font-semibold text-gray-900">Log out</a>
@@ -77,7 +84,14 @@
                     <a href="./dex" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Sell</a>
                     <a href="./about-us" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">About Us</a>
                     </div>
-                    <div class="py-6">
+                    <div class="py-6" >
+                        <button id="connect-wallet-btn" onclick="WalletConnect.openConnectModal()" class="rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-xs hover:bg-blue-500">
+                            Connect Wallet
+                        </button>
+                        <span id="wallet-address" class="text-sm font-semibold text-gray-900" style="display: none;"></span>
+                        <button id="disconnect-wallet-btn" onclick="WalletConnect.disconnectWallet()" class="text-sm font-semibold text-red-600 hover:text-red-500" style="display: none;">
+                            Disconnect
+                        </button>   
                         <% if (isLoggedIn) { %>
                             <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900"><%= userEmail %></span>
                             <a href="./logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log out</a>
@@ -115,5 +129,7 @@
         </div>
     </div>
     </div>
+
+    <script type="module" src="js/wallet.bundle.js"></script>
 </body>
 </html>
