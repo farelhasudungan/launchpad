@@ -107,7 +107,6 @@ public class LaunchServlet extends HttpServlet {
         try {
             List<Token> newestTokens = tokenDAO.getAllTokens();
             
-            // Set as request attribute
             request.setAttribute("newestTokens", newestTokens);
             
             System.out.println("Loaded " + (newestTokens != null ? newestTokens.size() : 0) + " newest tokens");

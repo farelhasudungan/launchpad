@@ -62,8 +62,15 @@
             <artifactId>contracts</artifactId>
             <version>5.0.1</version>
         </dependency>
+
+        <!-- Gson for JSON processing -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
     </dependencies>
-    
+
     <build>
         <finalName>CryptoLaunchpad</finalName>
         <plugins>

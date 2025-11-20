@@ -30,14 +30,12 @@ public class GeckoTerminalProxyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // Get the path after /api/gecko/
         String pathInfo = request.getPathInfo();
         if (pathInfo == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing path");
             return;
         }
         
-        // Build target URL
         String queryString = request.getQueryString();
         String targetUrl = GECKO_API_BASE + pathInfo;
         if (queryString != null) {
@@ -46,12 +44,10 @@ public class GeckoTerminalProxyServlet extends HttpServlet {
         
         System.out.println("Proxying request to: " + targetUrl);
         try {
-            // Make request to GeckoTerminal API
             URL url = URI.create(targetUrl).toURL();
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-            
-            // Add API key header
+
             if (apiKey != null && !apiKey.isEmpty()) {
                 conn.setRequestProperty("x-cg-demo-api-key", apiKey);
             }
@@ -59,7 +55,6 @@ public class GeckoTerminalProxyServlet extends HttpServlet {
             
             int responseCode = conn.getResponseCode();
             
-            // Read response
             BufferedReader in;
             if (responseCode >= 200 && responseCode < 300) {
                 in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -75,12 +70,10 @@ public class GeckoTerminalProxyServlet extends HttpServlet {
             in.close();
             conn.disconnect();
             
-            // Send response back to client
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.setStatus(responseCode);
             
-            // Add CORS headers
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods", "GET");
             response.setHeader("Access-Control-Allow-Headers", "Content-Type");
